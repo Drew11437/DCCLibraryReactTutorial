@@ -12,9 +12,31 @@ this.books = [
 {title: 'The first and Last Freedom', author: 'Jiddu Krishamurit'}
 ];
 this.state = {
-    bookNumber: 1
+    bookNumber: 0
 };
     }
+    goToNextBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber++;
+        if(tempBookNumber === this.books.length ){
+            tempBookNumber = 0;
+        }
+        this.setState({
+            bookNumber: tempBookNumber
+        });
+    }
+    goToPreviousBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber--;
+        if(tempBookNumber < 0){
+            tempBookNumber = this.books.length - 1;
+        }
+        this.setState({
+            bookNumber : tempBookNumber
+        });
+
+    }
+
 
 render(){
     return(
@@ -23,6 +45,7 @@ render(){
                         <div className = "row">
                  <div className="col-md-4">
                        {/*Button here to move to previous book viewed*/}
+                       <button onClick={this.goToPreviousBook}>Previous Book</button>
                              </div>
                              <div className="col-md-4">
                               {/*Display Book with cover here*/}
@@ -31,6 +54,7 @@ render(){
                          </div>
                         <div className="col-md-4">
               {/*Button here to move to Next book viewed*/}
+              <button onClick={this.goToNextBook}>Next Book</button>
           </div>
     </div>
     
